@@ -5,6 +5,7 @@
 int main(int argc, char const *argv[])
 {
     setlocale(LC_ALL, "Portuguese");
+    
     //Imprime cabecalho  do nosso jogo.
     printf("*********************************** \n");
     printf("* Bem vindo ao jogo da ADVINHAÇÃO * \n");
@@ -18,18 +19,21 @@ int main(int argc, char const *argv[])
    
     printf("\nSeu chute foi %d \n", chute);
 
-    if (chute == numeroSecreto)
+    int acertou = chute == numeroSecreto;
+    printf("Acertou: %d\n", acertou);
+
+    if (acertou)
     {
         printf("Parabéns! Você acertou!\n");
         printf("Jogue de novo, você é um bom jogador");
     } else {
-        
-        if (chute > numeroSecreto)
+        int maior = chute > numeroSecreto;
+        if (maior)
         {
             printf("Seu chute foi maior que o número secreto.\n");
         }
-
-        if (chute < numeroSecreto)
+        int menor = chute < numeroSecreto;
+        if (menor)
         {
             printf("Seu chute foi menor que o número secreto.\n");
         }
