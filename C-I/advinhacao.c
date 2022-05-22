@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <locale.h>
 
-#define TENTATIVAS 5
 
 int main(int argc, char const *argv[])
 {
@@ -15,31 +14,34 @@ int main(int argc, char const *argv[])
 
     int numeroSecreto = 42;
     int chute;
+    int ganhou = 0;
+    int tentativas = 1;
 
-    for (int i = 1; i <= TENTATIVAS; i++)
+    while(ganhou == 0)
     {
-        printf("Tentativa %d de %d.\n", i, TENTATIVAS);
+        printf("Tentativa %d de %d.\n", tentativas);
         printf("Qual e o seu chute? ");
         scanf("%d", &chute);
         printf("\nSeu chute foi %d \n", chute);
+        
+        // Evitar chute de números negativos
         if (chute < 0)
         {
             printf("Voce não pode chutar numeros negativos!\n");
-            i--;
             // Faz o código ir direto para a próxima interação;
+            //Parecido com o Break;
             continue;
         }
 
-        int acertou = chute == numeroSecreto;
+        int acertou = (chute == numeroSecreto);
         int maior = chute > numeroSecreto;
-        int menor = chute < numeroSecreto;
 
         if (acertou)
         {
             printf("Parabens! Voce acertou!\n");
             printf("Jogue de novo, voce e um bom jogador.\n");
             // Faz o código parar aqui;
-            break;
+            ganhou = 1;
         }
         else if (maior)
         {
@@ -49,10 +51,12 @@ int main(int argc, char const *argv[])
         {
             printf("Seu chute foi menor que o numero secreto.\n");
         }
+        tentativas++;
     }
 
     printf("\n");
     printf("Fim de jogo!\n");
+    printf("Voce acertou em %d", tentativas-1);
 
     return 0;
 }
